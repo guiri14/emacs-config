@@ -26,4 +26,4 @@
 
 (defun open-config ()
   (interactive)
-  (find-file "C:/Users/joseph.fontenot/.emacs.d/init.el"))
+  (find-file user-init-file))
