@@ -71,3 +71,4 @@
 (setq backup-directory-alist `(("." . , --backup-directory)))
 
 (setq delete-old-versions t)
+(setq ring-bell-function 'ignore)
