@@ -2,6 +2,14 @@
   (interactive)
   (find-file user-init-file))
 
+(setq make-backup-files nil)
+(setq auto-save-default nil)
+
+(setq x-select-enable-clipboard t)
+(setq global-linium-mode t)
+
+(setq delete-old-versions t)
+(setq ring-bell-function 'ignore)
 (require 'package)
 (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/"))
 (add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/"))
@@ -25,7 +33,7 @@
  '(line-number-mode nil)
  '(package-selected-packages
    (quote
-    (intero haskell-mode atom-one-dark-theme csharp-mode helm-projectile projectile company web-mode paredit cider s helm evil))))
+    (resize-window intero haskell-mode atom-one-dark-theme csharp-mode helm-projectile projectile company web-mode paredit cider s helm evil))))
  '(custom-enabled-themes (quote (atom-one-dark-theme)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -34,6 +42,7 @@
  ;; If there is more than one, they won't work right.
  )
 
+(package-install-selected-packages)
 ;; Set default font
 (set-face-attribute 'default nil
                     :family "Consolas"
@@ -47,6 +56,11 @@
 
 (require 'helm)
 (require 'helm-config)
+
+(projectile-global-mode)
+(helm-projectile-on)
+(global-company-mode)
+
 (global-set-key (kbd "M-x") #'helm-M-x)
 (global-set-key (kbd "C-x b") 'helm-mini)
 (global-set-key (kbd "C-x C-b") 'helm-mini)
@@ -61,14 +75,3 @@
 ;; Unbind the two emacs movement keys
 (define-key helm-map (kbd "C-n") nil)
 (define-key helm-map (kbd "C-p") nil)
-
-(setq x-select-enable-clipboard t)
-(setq global-linium-mode t)
-
-(setq backup-directory-alist
-	`((".*" . ,temporary-file-directory)))
-(setq auto-save-file-name-transforms
-	`((".*" ,temporary-file-directory t)))
-
-(setq delete-old-versions t)
-(setq ring-bell-function 'ignore)

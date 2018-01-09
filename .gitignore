@@ -7,6 +7,9 @@
 auto-save-list
 tramp
 .\#*
+autosaves/
+backups/
+recentf
 
 # Org-mode
 .org-id-locations
@@ -41,6 +44,7 @@ flycheck_*.el
 # projectiles files
 .projectile
 projectile.cache
+projectile-bookmarks.eld
 
 # directory configuration
 .dir-locals.el
