@@ -4,9 +4,12 @@
 
 (require 'package)
 (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/"))
-(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
 (add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/"))
 (package-initialize)
+
+(autoload 'visual-basic-mode "visual-basic-mode" "Visual Basic Mode." t)
+(add-to-list 'auto-mode-alist '("\\.vb\\'" . visual-basic-mode))
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -55,8 +58,6 @@
 (define-key helm-map (kbd "C-j") 'helm-next-line)
 (define-key helm-map (kbd "C-k") 'helm-previous-line)
 
-
-
 ;; Unbind the two emacs movement keys
 (define-key helm-map (kbd "C-n") nil)
 (define-key helm-map (kbd "C-p") nil)
@@ -64,11 +65,10 @@
 (setq x-select-enable-clipboard t)
 (setq global-linium-mode t)
 
-(defvar --backup-directory (concat user-emacs-directory "backups"))
-(if (not (file-exists-p --backup-directory))
-    (make-directory --backup-directory t))
-
-(setq backup-directory-alist `(("." . , --backup-directory)))
+(setq backup-directory-alist
+	`((".*" . ,temporary-file-directory)))
+(setq auto-save-file-name-transforms
+	`((".*" ,temporary-file-directory t)))
 
 (setq delete-old-versions t)
 (setq ring-bell-function 'ignore)
